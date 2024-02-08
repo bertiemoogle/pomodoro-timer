@@ -1,10 +1,15 @@
 let workTitle = document.getElementById("work");
 let breakTitle = document.getElementById("break");
+let audio = new Audio("sounds/sound.mp3");
 
 let workTime = 25;
 let breakTime = 5;
 
 let seconds = "00";
+
+function playSound(Audio) {
+  audio.play();
+}
 
 window.onload = () => {
   document.getElementById("minutes").innerHTML = workTime;
@@ -28,6 +33,14 @@ function start() {
     document.getElementById("seconds").innerHTML = seconds;
 
     seconds = seconds - 1;
+
+    if (seconds < 10 && seconds >= 0) {
+      seconds = "0" + seconds;
+    }
+
+    if (seconds == 0 && workMinutes == 0) {
+      playSound();
+    }
 
     if (seconds == 0) {
       workMinutes = workMinutes - 1;
